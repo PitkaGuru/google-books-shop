@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4 col-lg-3 offset-lg-4">
+    <mat-card>
+      <div class="title">Bejelentkezés</div>
+      <form (submit)="login(f)" #f="ngForm" >
+        <mat-form-field>
+          <input matInput placeholder="Felhasználónév" name="user" ngModel #user="ngModel" required>
+          <mat-error *ngIf="user.invalid">Kérem adja meg a felhasználónevét!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Jelszó" name="password" ngModel #password="ngModel" required>
+          <mat-error *ngIf="password.invalid">Kérem adjon meg jelszót!</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="f.invalid">Belépés</button>
+      </form>
+    </mat-card>
+  </div>
+</div>

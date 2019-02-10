@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$szin1: #3F51B5;
+$szin2: #FF4081;
+$szin3: #00acc1;
+$success_color: #4CAF50;
+$warning_color: yellow;
+$danger_color: rgb(235, 55, 55);
+
+
+.title{
+  color: $szin1;
+  font-size: 1.5em;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+mat-checkbox{
+  margin-right: 5px;
+}
+
+mat-card{
+  margin: 5px 0;
+}
+
+.szin1{
+  color: $szin1;
+}
+
+.szin2{
+  color: $szin2;
+}
+
+.szin3{
+  color: $szin3;
+}
+
+.nagyi{
+  font-size: 40px;
+}
+
+button{
+  margin: 5px;
+}
+
+.full-width{
+  width: 100%;
+}
+
+mat-header-row{
+ background: #607D8B;
+}
+
+mat-row{
+  cursor: pointer;
+}
+
+mat-row:hover{
+  background: rgb(238, 238, 238);
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+button[mat-raised-button]{
+      margin-top: 5px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+}
+
+
+//Bootstrap 4 gombokat automatkusan kékkel bekeretezi ha rányomunk ezért kell felülírni
+button:focus, button:active:focus, button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
