@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DataService } from './services/data.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DataService } from './services/data.service';
     FormsModule
   ],
   providers: [
-    DataService
+    DataService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

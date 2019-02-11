@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
 import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
@@ -56,7 +58,9 @@ import {
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatBadgeModule
   ],
 })
 export class CustomMaterialModule { }

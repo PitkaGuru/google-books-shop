@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { Volume } from "../shared/models/Volume.model";
 
 const baseUrl = environment.baseUrl;
 
@@ -17,8 +18,8 @@ export class DataService implements OnInit {
 
   }
 
-  searchBook(filter: string) {
-    return this.http.get(this.api_searchBook + filter);
+  searchBook(filter: string, startIndex: number) {
+    return this.http.get<volumeI>(this.api_searchBook + filter + `+intitle&startIndex=${startIndex}&maxResults=40`);
   }
 
 
@@ -37,12 +38,10 @@ export interface ListI {
   TotalCount: number;
 }
 
-export interface sampleI{
-  Authorized: boolean;
-  Data: any[];
-  Message: string;
-  Success: boolean;
-  TotalCount: number;
+export interface volumeI{
+  items: Volume[];
+  kind: string;
+  totalItems: number;
 }
 
 

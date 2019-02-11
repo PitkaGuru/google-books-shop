@@ -1,6 +1,5 @@
 export class Volume {
 
-  
     kind: string;
     id: string;
     etag: string;

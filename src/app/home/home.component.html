@@ -6,12 +6,37 @@
   </div>
   <div class="col-md-2">
     <button mat-raised-button type="button" color="primary" (click)="search()">Keres</button>
+    <mat-checkbox [(ngModel)]="multisearch" id="multisearch" name="multisearch"> multi search</mat-checkbox>
+  </div>
+  <div class="col-md-2">
+    Találatok száma: {{totalItems}}
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam laboriosam veritatis esse natus, nesciunt tenetur. Ex repudiandae alias voluptatem cupiditate ea id aperiam. Quo labore iure laboriosam asperiores, animi itaque aliquam rerum illo placeat, consequuntur sint maiores aliquid deserunt consequatur eos eaque cumque hic sed molestiae? Maiores fugit amet eos aspernatur excepturi. Harum quas distinctio minus repellat nisi voluptatem velit illo possimus aspernatur non pariatur voluptates placeat vitae molestias, ipsa incidunt eum culpa delectus aliquam et ratione, dolores expedita exercitationem! Nesciunt cum eos consectetur ad blanditiis facere totam, id ipsum accusantium cupiditate, quibusdam esse cumque incidunt illo autem nam explicabo.
-  </div>
+  <mat-card class="example-card col-md-2" *ngFor="let volume of volumes">
+  
+      <div class="row">
+        <div class="col-md-12">
+            <div class="title">{{volume.volumeInfo.title}}</div> 
+        </div>
+      </div>
+
+    <img mat-card-image src="{{volume.volumeInfo.imageLinks?.thumbnail}}" alt="Kép" >
+    <mat-card-content>
+
+      Szerző: 
+      <mat-chip-list>
+          <mat-chip *ngFor="let author of volume.volumeInfo.authors">{{ author }}</mat-chip>
+      </mat-chip-list>
+   
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary">Részletek</button>
+      <button mat-mini-fab color="accent" (click)="addToCart(volume.id)" >
+          <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 
 
