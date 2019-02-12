@@ -3,28 +3,12 @@
     <a routerLink="/">Book Shop</a>
   </span>
   
-  <!-- Nagy kijelző menü -->
-  <ul class="d-none d-lg-flex">
-    <!-- <li>
-      <a mat-button routerLink="/tag/list" routerLinkActive="mat-accent">Tagok</a>
-    </li>
-    <li>
-      <a mat-button routerLink="/befizetes/list" routerLinkActive="mat-accent">Befizetések</a>
-    </li> -->
-
-  </ul>
+  
   <div class="spacer"></div>
 
-  <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
-  
-
-  <!-- Kis kijelző menü -->
-  <button mat-icon-button [matMenuTriggerFor]="menu" class="d-block d-lg-none">
-    <mat-icon>menu</mat-icon>
+  <button mat-icon-button routerLink="/cart">
+      <mat-icon matBadge="{{dataService.cartIds.length}}" matBadgeColor="warn">shopping_cart</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/tag/list">Tagok</button>
-    <button mat-menu-item routerLink="/befizetes/list">Befizetések</button>
-  </mat-menu>
-
+ 
+  
 </mat-toolbar>

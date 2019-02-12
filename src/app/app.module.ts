@@ -11,12 +11,21 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DataService } from './services/data.service';
 import { MessageService } from './services/message.service';
+import { VolumeDetailComponent } from './volume-detail/volume-detail.component';
+import { CartComponent } from './cart/cart.component';
+import { InfoDialogComponent } from './shared/dialogs/info-dialog/info-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    VolumeDetailComponent,
+    CartComponent,
+    InfoDialogComponent
+  ],
+  entryComponents: [
+    InfoDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -4,13 +4,16 @@ import { environment } from "src/environments/environment";
 import { Volume } from "../shared/models/Volume.model";
 
 const baseUrl = environment.baseUrl;
+const apiKey = environment.apiKey;
 
 @Injectable()
 export class DataService implements OnInit {
 
+  filter;
+  cartIds: string[] = [];
 
   private api_searchBook: string = baseUrl + "/volumes?q="
-
+  private api_getVolume: string = baseUrl + "/volumes/"
 
   constructor(private http: HttpClient){ }
 
@@ -18,14 +21,16 @@ export class DataService implements OnInit {
 
   }
 
-  searchBook(filter: string, startIndex: number) {
-    return this.http.get<volumeI>(this.api_searchBook + filter + `+intitle&startIndex=${startIndex}&maxResults=40`);
+  searchBook(startIndex: number) {
+    return this.http.get<volumeI>(this.api_searchBook + this.filter + `+intitle&startIndex=${startIndex}&maxResults=40&printType=books&${apiKey}`);
+  }
+
+  getVolume(id: string){
+    return this.http.get<Volume>(this.api_getVolume + id +`?${apiKey}`);
   }
 
 
-  // befizetesSzamlaNew(data) {
-  //   return this.http.post<sampleI>(this.api_befizetesSzamlaNew, data);
-  // }
+
 
 
 
@@ -33,10 +38,6 @@ export class DataService implements OnInit {
 
 }
 
-export interface ListI {
-  Data: any[];
-  TotalCount: number;
-}
 
 export interface volumeI{
   items: Volume[];
