@@ -1,3 +1,54 @@
-<ol>
-  <li *ngFor="let id of dataService.cartIds">{{id}}</li>
-</ol>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    <div class="row fejlec">
+      <button mat-mini-fab color="primary" (click)="vissza()" matTooltip="Vissza" type="button">
+        <mat-icon>arrow_back</mat-icon>
+      </button> 
+      <div class="title">Kosár</div>
+      <button mat-raised-button color="warn" (click)="deleteCart()" class="deleteCart">Kosár törlése</button>
+    </div>
+
+    <div class="row" *ngFor="let ci of dataService.cartItems">
+      <div class="col-md-12">
+        <mat-card class="example-card">
+          <div class="row">
+            <div class="col-md-2">
+              <img mat-card-image src="{{ci.volume.volumeInfo.imageLinks?.thumbnail}}" alt="Kép" >
+            </div>
+            <div class="col-md-4">
+              <div class="bookTitle">{{ci.volume.volumeInfo.title}}</div>
+              <span class="subtitle">Szerző: </span>
+              <mat-chip-list>
+                  <mat-chip *ngFor="let author of ci.volume.volumeInfo.authors">{{ author }}</mat-chip>
+              </mat-chip-list>
+            </div>
+            <div class="col-md-1">
+              <mat-form-field>
+                <input matInput type="number" placeholder="Darab" id="db" name="db" [(ngModel)]="ci.db">
+              </mat-form-field> 
+            </div>
+            <div class="col-md-4">
+              <ul>
+                <li>{{ci.volume.volumeInfo.pageCount}} oldal</li>
+                <li>
+                  <span class="subtitle">Kiadó: </span> {{ci.volume.volumeInfo.publisher}}
+                </li>
+                <li> 
+                  <span class="subtitle">Kiadás dátuma: </span>{{ci.volume.volumeInfo.publishedDate}}
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-1">
+              <button mat-mini-fab color="warn" (click)="deleteCartItem(ci)" matTooltip="Törlés" type="button">
+                <mat-icon>delete</mat-icon>
+              </button> 
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

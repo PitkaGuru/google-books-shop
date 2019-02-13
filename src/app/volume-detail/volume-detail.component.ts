@@ -39,14 +39,8 @@ export class VolumeDetailComponent implements OnInit {
   }
 
 
-  addToCart(id: string){
-    console.log(id);
-    if(this.dataService.cartIds.includes(id)){
-      this.ms.openInfoDialog("Figyelem!","Ezt a könyvet már korábban hozzáadtad a kosárhoz.");
-    }else{
-      this.dataService.cartIds.push(id);
-      this.ms.openSnackBar("Kosárhoz adva");
-    }
+  addToCart(volume: Volume){
+    this.dataService.addToCart(volume);
   }
 
   vissza() {

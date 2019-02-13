@@ -14,6 +14,8 @@ import { MessageService } from './services/message.service';
 import { VolumeDetailComponent } from './volume-detail/volume-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { InfoDialogComponent } from './shared/dialogs/info-dialog/info-dialog.component';
+import { UtilService } from './services/util.service';
+import { SureDialogComponent } from './shared/dialogs/sure-dialog/sure-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { InfoDialogComponent } from './shared/dialogs/info-dialog/info-dialog.co
     HomeComponent,
     VolumeDetailComponent,
     CartComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    SureDialogComponent
   ],
   entryComponents: [
-    InfoDialogComponent
+    InfoDialogComponent,
+    SureDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -37,7 +41,8 @@ import { InfoDialogComponent } from './shared/dialogs/info-dialog/info-dialog.co
   ],
   providers: [
     DataService,
-    MessageService
+    MessageService,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })

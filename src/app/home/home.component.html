@@ -17,7 +17,7 @@
   
       <div class="row">
         <div class="col-md-12">
-          <div class="title">{{volume.volumeInfo.title}}</div> 
+          <div class="bookTitle">{{volume.volumeInfo.title}}</div> 
         </div>
       </div>
 
@@ -32,7 +32,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" (click)="details(volume.id)">Részletek</button>
-      <button mat-mini-fab color="accent" (click)="addToCart(volume.id)" matTooltip="Kosárhoz adás">
+      <button mat-mini-fab color="accent" (click)="addToCart(volume)" matTooltip="Kosárhoz adás">
           <mat-icon>add_shopping_cart</mat-icon>
       </button>
     </mat-card-actions>

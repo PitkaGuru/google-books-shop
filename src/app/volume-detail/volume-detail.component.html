@@ -15,15 +15,15 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-12">
-              <div class="title">{{volume.volumeInfo.title}}</div>  
+              <div class="bookTitle">{{volume.volumeInfo.title}}</div>  
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-                <span class="subtitle">Szerző: </span>
-                <mat-chip-list>
-                    <mat-chip *ngFor="let author of volume.volumeInfo.authors">{{ author }}</mat-chip>
-                </mat-chip-list>
+              <span class="subtitle">Szerző: </span>
+              <mat-chip-list>
+                  <mat-chip *ngFor="let author of volume.volumeInfo.authors">{{ author }}</mat-chip>
+              </mat-chip-list>
             </div>
           </div>
           <div class="row">
@@ -51,7 +51,7 @@
         <button mat-mini-fab color="primary" (click)="vissza()" matTooltip="Vissza" type="button">
           <mat-icon>arrow_back</mat-icon>
         </button> 
-        <button mat-mini-fab color="accent" (click)="addToCart(volume.id)" matTooltip="Kosárhoz adás">
+        <button mat-mini-fab color="accent" (click)="addToCart(volume)" matTooltip="Kosárhoz adás">
             <mat-icon>add_shopping_cart</mat-icon>
         </button>
       </mat-card-actions>

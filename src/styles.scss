@@ -9,9 +9,18 @@ $warning_color: yellow;
 $danger_color: rgb(235, 55, 55);
 
 
-.title{
+.bookTitle{
   color: $szin1;
   font-size: 12pt;
+}
+
+.subtitle{
+  font-weight: bold;
+}
+
+.title{
+  color: $szin1;
+  font-size: 1.5em;
 }
 
 mat-form-field{
