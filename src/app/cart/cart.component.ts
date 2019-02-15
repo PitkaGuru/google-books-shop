@@ -28,8 +28,6 @@ export class CartComponent implements OnInit{
    
     return this.ms.openTorlesDialog().subscribe(yes => {
       if (yes) {
-        console.log("deleteCart");
-        this.dataService.cartVolumes = [];
         this.dataService.cartItems = [];
         this.util.deleteData('cartVolumes');
         this.util.deleteData('cartItems'); 
@@ -39,7 +37,24 @@ export class CartComponent implements OnInit{
   }
 
   deleteCartItem(ci: CartItem){
-    console.log("deleted CartItem", ci);
+
+    return this.ms.openTorlesDialog().subscribe(yes => {
+      if (yes) {
+   
+        //Kivágom a CartItemet 
+        let index = this.dataService.cartItems.indexOf(ci, 0);
+        if (index > -1) {
+          this.dataService.cartItems.splice(index, 1);
+        }
+        this.util.deleteData('cartItems'); 
+        this.util.setData('cartItems',this.dataService.cartItems);
+      }
+    });
+   
+  }
+
+  dbChanged(){
+    this.util.setData('cartItems',this.dataService.cartItems);
   }
 
 

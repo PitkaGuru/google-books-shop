@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-2">
     <button mat-raised-button type="button" color="primary" (click)="search()">Keres</button>
-    <mat-checkbox [(ngModel)]="multisearch" id="multisearch" name="multisearch"> multi search</mat-checkbox>
+    <mat-checkbox [(ngModel)]="dataService.multisearch" id="multisearch" name="multisearch"> multi search</mat-checkbox>
   </div>
   <div class="col-md-2" *ngIf="submited">
     Találatok száma: {{totalItems}}
@@ -21,7 +21,7 @@
         </div>
       </div>
 
-    <img mat-card-image src="{{volume.volumeInfo.imageLinks?.thumbnail}}" alt="Kép" >
+    <img mat-card-image [src]="getImagePath(volume)" alt="Kép" >
     <mat-card-content>
 
       Szerző: 
@@ -37,7 +37,10 @@
       </button>
     </mat-card-actions>
   </mat-card>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <mat-spinner *ngIf="filters.length != n"></mat-spinner>
 </div>
+
 
 
 

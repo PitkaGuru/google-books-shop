@@ -5,6 +5,7 @@ import { Volume } from "../shared/models/Volume.model";
 import { MessageService } from "./message.service";
 import { CartItem } from "../shared/models/CartItem.model";
 import { UtilService } from "./util.service";
+import { VolumeList } from "../shared/models/VolumeList.model";
 
 const baseUrl = environment.baseUrl;
 const apiKey = environment.apiKey;
@@ -12,8 +13,8 @@ const apiKey = environment.apiKey;
 @Injectable()
 export class DataService implements OnInit {
 
-  filter;
-  cartVolumes: Volume[] = [];
+  filter = '';
+  multisearch: boolean = false;
   cartItems: CartItem[] = [];
 
   private api_searchBook: string = baseUrl + "/volumes?q="
@@ -24,16 +25,24 @@ export class DataService implements OnInit {
     public ms: MessageService,
     private util: UtilService
   ){ 
-    this.cartVolumes = this.util.getData('cartVolumes');
-    this.cartItems = this.util.getData('cartItems');
+   
+    let cItems = this.util.getData('cartItems');
+   
+    if(cItems == false){
+      this.cartItems = [];
+    }else{
+      this.cartItems = cItems;
+    }
+    console.log('cartItems', this.cartItems);
+
   }
 
   ngOnInit(){
   
   }
 
-  searchBook(startIndex: number) {
-    return this.http.get<volumeI>(this.api_searchBook + this.filter + `+intitle&startIndex=${startIndex}&maxResults=40&printType=books&${apiKey}`);
+  searchBook(startIndex: number, filter: string) {
+    return this.http.get<VolumeList>(this.api_searchBook + filter + `+intitle&startIndex=${startIndex}&maxResults=25&printType=books&${apiKey}`);
   }
 
   getVolume(id: string){
@@ -46,28 +55,31 @@ export class DataService implements OnInit {
       db: 1,
       volume: volume
     };
- 
-  
-    if(this.cartVolumes.includes(volume)){
+    console.log("addedVolume",volume);
+    if(!this.egyedi(volume)){
       this.ms.openInfoDialog("Figyelem!","Ezt a könyvet már korábban hozzáadtad a kosárhoz.");
     }else{
-      this.cartVolumes.push(volume);
-      this.util.setData('cartVolumes',this.cartVolumes);
       this.cartItems.push(cartItem);
       this.util.setData('cartItems',this.cartItems);
       this.ms.openSnackBar("Kosárhoz adva");
     }
   }
 
+  egyedi(volume: Volume){
+
+    for(let cartItem of this.cartItems){
+      if(volume.id == cartItem.volume.id){
+        return false;
+      }
+    }
+    return true;
+
+  }
+
 
 }
 
 
-export interface volumeI{
-  items: Volume[];
-  kind: string;
-  totalItems: number;
-}
 
 
 

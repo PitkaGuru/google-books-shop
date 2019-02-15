@@ -7,7 +7,7 @@
         <mat-icon>arrow_back</mat-icon>
       </button> 
       <div class="title">Kosár</div>
-      <button mat-raised-button color="warn" (click)="deleteCart()" class="deleteCart">Kosár törlése</button>
+      <button mat-raised-button color="warn" (click)="deleteCart()" class="deleteCart" *ngIf="dataService.cartItems.length > 0">Kosár törlése</button>
     </div>
 
     <div class="row" *ngFor="let ci of dataService.cartItems">
@@ -26,7 +26,15 @@
             </div>
             <div class="col-md-1">
               <mat-form-field>
-                <input matInput type="number" placeholder="Darab" id="db" name="db" [(ngModel)]="ci.db">
+                <input 
+                  matInput 
+                  type="number" 
+                  placeholder="Darab" 
+                  min="1" 
+                  id="db" 
+                  name="db"
+                  (ngModelChange)="dbChanged()" 
+                  [(ngModel)]="ci.db">
               </mat-form-field> 
             </div>
             <div class="col-md-4">
