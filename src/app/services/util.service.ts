@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from "@angular/core";
+import { Volume } from "../shared/models/Volume.model";
 
 
 @Injectable()
@@ -28,6 +29,8 @@ getData(key){
 deleteData(key){
   localStorage.removeItem(key);
 }
+
+
 
 
 

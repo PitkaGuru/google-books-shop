@@ -9,54 +9,76 @@
       <div class="title">Kosár</div>
       <button mat-raised-button color="warn" (click)="deleteCart()" class="deleteCart" *ngIf="dataService.cartItems.length > 0">Kosár törlése</button>
     </div>
+    <form #f="ngForm">
+      <div class="row" *ngFor="let ci of dataService.cartItems">
+        <div class="col-md-12">
+          <mat-card class="example-card">
+            <div class="row">
+              <div class="col-md-2">
+                <img mat-card-image [src]="getImagePath(ci.volume)"  alt="Kép" >
+              </div>
+              <div class="col-md-4">
+                <div class="bookTitle">{{ci.volume.volumeInfo.title}}</div>
+                <span class="subtitle">Szerző: </span>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let author of ci.volume.volumeInfo.authors">{{ author }}</mat-chip>
+                </mat-chip-list>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field>
+                  <input 
+                    matInput 
+                    type="number" 
+                    placeholder="Darab" 
+                    min="1" 
+                    id="db" 
+                    name="db"
+                    pattern="^[1-9][0-9]*$"
+                    (ngModelChange)="dbChanged(ci)" 
+                    [(ngModel)]="ci.db">
+                </mat-form-field> 
+              </div>
+              <div class="col-md-3">
+                <mat-form-field>
+                  <input 
+                    matInput 
+                    type="number" 
+                    placeholder="Egységár ({{ci.volume.saleInfo.retailPrice.currencyCode}})" 
+                    readonly
+                    id="egysegar" 
+                    name="egysegar"
+                    [(ngModel)]="ci.egysegar">
+                </mat-form-field>
+                <mat-form-field>
+                  <input 
+                    matInput 
+                    type="number" 
+                    placeholder="Összár ({{ci.volume.saleInfo.retailPrice.currencyCode}})" 
+                    readonly
+                    id="osszar" 
+                    name="osszar"
+                    [(ngModel)]="ci.osszar">
+                </mat-form-field>  
 
-    <div class="row" *ngFor="let ci of dataService.cartItems">
-      <div class="col-md-12">
-        <mat-card class="example-card">
-          <div class="row">
-            <div class="col-md-2">
-              <img mat-card-image src="{{ci.volume.volumeInfo.imageLinks?.thumbnail}}" alt="Kép" >
+                  
+              </div>
+              <div class="col-md-1">
+                <button mat-mini-fab color="warn" (click)="deleteCartItem(ci)" matTooltip="Törlés" type="button">
+                  <mat-icon>delete</mat-icon>
+                </button> 
+              </div>
             </div>
-            <div class="col-md-4">
-              <div class="bookTitle">{{ci.volume.volumeInfo.title}}</div>
-              <span class="subtitle">Szerző: </span>
-              <mat-chip-list>
-                  <mat-chip *ngFor="let author of ci.volume.volumeInfo.authors">{{ author }}</mat-chip>
-              </mat-chip-list>
-            </div>
-            <div class="col-md-1">
-              <mat-form-field>
-                <input 
-                  matInput 
-                  type="number" 
-                  placeholder="Darab" 
-                  min="1" 
-                  id="db" 
-                  name="db"
-                  (ngModelChange)="dbChanged()" 
-                  [(ngModel)]="ci.db">
-              </mat-form-field> 
-            </div>
-            <div class="col-md-4">
-              <ul>
-                <li>{{ci.volume.volumeInfo.pageCount}} oldal</li>
-                <li>
-                  <span class="subtitle">Kiadó: </span> {{ci.volume.volumeInfo.publisher}}
-                </li>
-                <li> 
-                  <span class="subtitle">Kiadás dátuma: </span>{{ci.volume.volumeInfo.publishedDate}}
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-1">
-              <button mat-mini-fab color="warn" (click)="deleteCartItem(ci)" matTooltip="Törlés" type="button">
-                <mat-icon>delete</mat-icon>
-              </button> 
-            </div>
-          </div>
-        </mat-card>
+          </mat-card>
+        </div>
       </div>
+    </form>
+
+    <div class="title" *ngIf="dataService.cartItems.length > 0">Végösszeg: {{getVegosszeg()}} HUF
+        <button mat-raised-button color="primary" *ngIf="dataService.cartItems.length > 0" [disabled]="!f.valid">
+            Megvesz
+         </button>
     </div>
+   
 
   </div>
 </div>

@@ -70,14 +70,16 @@ export class HomeComponent implements OnInit {
   }
 
   getImagePath(volume: Volume){
-    console.log(volume.volumeInfo);
+  
     if(volume.volumeInfo.imageLinks == undefined){
       return "/assets/images/noimage.svg.png";
     }else{
       return volume.volumeInfo.imageLinks.thumbnail;
-    }
-    
+    } 
+
   }
+
+ 
 
 
   @HostListener('window:scroll', ['$event'])

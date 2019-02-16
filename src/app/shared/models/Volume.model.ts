@@ -15,8 +15,25 @@ export class Volume {
       printedPageCount: number,
       imageLinks: {
         thumbnail: string,
+        small: string,
+        medium: string
       },  
     };
+    saleInfo: {
+      // buyLink: string;
+      // country: string
+      // isEbook: boolean
+      // listPrice: {
+      //   amount: number
+      //   currencyCode: string;
+      // };
+      retailPrice: {
+        amount: number, 
+        currencyCode: string
+      }
+      saleability: string;
+    };
+
    
 
 }

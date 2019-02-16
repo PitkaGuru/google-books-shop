@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { CartItem } from '../shared/models/CartItem.model';
 import { UtilService } from '../services/util.service';
 import { MessageService } from '../services/message.service';
+import { Volume } from '../shared/models/Volume.model';
 
 
 @Component({
@@ -21,6 +22,10 @@ export class CartComponent implements OnInit{
   ) { }
 
   ngOnInit() {
+
+    for(let ci of this.dataService.cartItems){
+      console.log(ci);
+    }
     
   }
 
@@ -53,7 +58,8 @@ export class CartComponent implements OnInit{
    
   }
 
-  dbChanged(){
+  dbChanged(ci: CartItem){
+    ci.osszar = ci.volume.saleInfo.retailPrice.amount * ci.db;
     this.util.setData('cartItems',this.dataService.cartItems);
   }
 
@@ -61,5 +67,27 @@ export class CartComponent implements OnInit{
   vissza() {
     this.location.back();
   }
+
+  getImagePath(volume: Volume){
+  
+    if(volume.volumeInfo.imageLinks == undefined){
+      return "/assets/images/noimage.svg.png";
+    }else{
+      return volume.volumeInfo.imageLinks.thumbnail;
+    } 
+    
+  }
+
+  getVegosszeg(){
+
+    let vegOsszeg = 0;
+    for(let ci of this.dataService.cartItems){
+      vegOsszeg += ci.osszar;
+    }
+    return vegOsszeg;
+
+  }
+
+  
 
 }

@@ -53,7 +53,9 @@ export class DataService implements OnInit {
 
     let cartItem: CartItem = {
       db: 1,
-      volume: volume
+      volume: volume,
+      egysegar: volume.saleInfo.retailPrice.amount,
+      osszar: volume.saleInfo.retailPrice.amount
     };
     console.log("addedVolume",volume);
     if(!this.egyedi(volume)){
@@ -75,6 +77,9 @@ export class DataService implements OnInit {
     return true;
 
   }
+
+
+ 
 
 
 }

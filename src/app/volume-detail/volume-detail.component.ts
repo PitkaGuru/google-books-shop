@@ -14,7 +14,7 @@ export class VolumeDetailComponent implements OnInit {
 
   id: string;
   volume: Volume = new Volume();
-  ready: boolean = false;
+  loading: boolean = true;
 
 
   constructor(
@@ -25,13 +25,13 @@ export class VolumeDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.loading = true;
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe((params: Params) => {
         this.id = params['id'];
         this.dataService.getVolume(this.id).subscribe(res => {
           this.volume = res;
-          this.ready = true;
+          this.loading = false;
           console.log(this.volume);
         });
       }
@@ -45,6 +45,16 @@ export class VolumeDetailComponent implements OnInit {
 
   vissza() {
     this.location.back();
+  }
+
+  getImagePath(volume: Volume){
+  
+    if(volume.volumeInfo.imageLinks == undefined){
+      return "/assets/images/noimage.svg.png";
+    }else{
+      return volume.volumeInfo.imageLinks.thumbnail;
+    } 
+
   }
 
 
