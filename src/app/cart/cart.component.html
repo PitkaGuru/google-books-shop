@@ -13,7 +13,6 @@
       </button> 
       <div class="title">Kosár</div>
       <button mat-raised-button color="warn" (click)="deleteCart()" class="deleteCart" *ngIf="dataService.cartItems.length > 0">Kosár törlése</button>
-      <button mat-raised-button color="primary" (click)="logCartItems()">logCartItems</button>
     </div>
     <form #f="ngForm">
       <div class="row" *ngFor="let ci of dataService.cartItems">

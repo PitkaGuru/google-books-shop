@@ -42,7 +42,7 @@ export class DataService implements OnInit {
   }
 
   searchBook(startIndex: number, filter: string) {
-    return this.http.get<VolumeList>(this.api_searchBook + filter + `+intitle&startIndex=${startIndex}&maxResults=25&printType=books&${apiKey}`);
+    return this.http.get<VolumeList>(this.api_searchBook + filter + `+intitle:${filter}&startIndex=${startIndex}&maxResults=25&printType=books&${apiKey}`);
   }
 
   getVolume(id: string){

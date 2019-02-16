@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
       this.n = 0;
       this.volumes = [];
       this.totalItems = 0;
-      this.filters = this.dataService.filter.split(";");
+      this.filters = this.dataService.filter.split(",");
       for(let filter of this.filters){
         this.dataService.searchBook(this.startIndex, filter).subscribe(res => {
           this.volumes.push(...res.items);
@@ -56,6 +56,14 @@ export class HomeComponent implements OnInit {
       });
     }
 
+  }
+
+  getKeresesTitle(){
+    if(this.dataService.multisearch){
+      return "Multi keresés";
+    }else{
+      return "Keresés";
+    }
   }
 
 

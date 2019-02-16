@@ -24,7 +24,7 @@ export class CartComponent implements OnInit{
    }
 
   ngOnInit() {
-   this.logCartItems();
+  
   }
 
   deleteCart(){
@@ -38,9 +38,6 @@ export class CartComponent implements OnInit{
 
   }
 
-  logCartItems(){
-    console.log(this.dataService.cartItems);
-  }
 
   deleteCartItem(ci: CartItem){
 
