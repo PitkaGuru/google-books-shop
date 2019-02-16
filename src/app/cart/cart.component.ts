@@ -59,10 +59,23 @@ export class CartComponent implements OnInit{
    
   }
 
-  dbChanged(ci: CartItem){
-    console.log("ci",ci);
-    ci.osszar = ci.egysegar * ci.db;
+  saveCartItems(){
     this.util.setData('cartItems',this.dataService.cartItems);
+  }
+
+  balra(ci: CartItem){
+    if(ci.db >=2){
+      ci.db = ci.db - 1;
+      ci.osszar = ci.db * ci.egysegar;
+      this.saveCartItems();
+    }
+  }
+
+  jobbra(ci: CartItem){
+    
+    ci.db = ci.db + 1;
+    ci.osszar = ci.db * ci.egysegar;
+    this.saveCartItems();
   }
 
 

@@ -23,48 +23,29 @@
               <div class="col-md-2">
                 <img mat-card-image [src]="getImagePath(ci.volume)"  alt="Kép" >
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="bookTitle">{{ci.volume.volumeInfo.title}}</div>
                 <span class="subtitle">Szerző: </span>
                 <mat-chip-list>
                     <mat-chip *ngFor="let author of ci.volume.volumeInfo.authors">{{ author }}</mat-chip>
                 </mat-chip-list>
               </div>
-              <div class="col-md-2">
-                <mat-form-field>
-                  <input 
-                    matInput 
-                    type="number" 
-                    placeholder="Darab" 
-                    min="1" 
-                    id="db" 
-                    name="db"
-                    pattern="^[1-9][0-9]*$"
-                    (ngModelChange)="dbChanged(ci)" 
-                    [(ngModel)]="ci.db">
-                </mat-form-field> 
+              <div class="col-md-3">
+
+                <button mat-icon-button (click)="balra(ci)">
+                  <mat-icon>navigate_before</mat-icon>
+                </button>
+
+                <span class="subtitle">Darab: </span>{{ci.db}}
+
+                <button mat-icon-button  (click)="jobbra(ci)">
+                  <mat-icon>navigate_next</mat-icon>
+                </button>
+               
               </div>
               <div class="col-md-3">
-                <mat-form-field>
-                  <input 
-                    matInput 
-                    type="number" 
-                    placeholder="Egységár ({{ci.volume.saleInfo.retailPrice.currencyCode}})" 
-                    readonly
-                    id="egysegar" 
-                    name="egysegar"
-                    [(ngModel)]="ci.egysegar">
-                </mat-form-field>
-                <mat-form-field>
-                  <input 
-                    matInput 
-                    type="number" 
-                    placeholder="Összár ({{ci.volume.saleInfo.retailPrice.currencyCode}})" 
-                    readonly
-                    id="osszar" 
-                    name="osszar"
-                    [(ngModel)]="ci.osszar">
-                </mat-form-field>         
+                  <span class="subtitle">Egységár ({{ci.volume.saleInfo.retailPrice.currencyCode}}): </span>{{ci.egysegar}}
+                  <span class="subtitle">Összár ({{ci.volume.saleInfo.retailPrice.currencyCode}}): </span>{{ci.osszar}}
               </div>
               <div class="col-md-1">
                 <button mat-mini-fab color="warn" (click)="deleteCartItem(ci)" matTooltip="Törlés" type="button">
