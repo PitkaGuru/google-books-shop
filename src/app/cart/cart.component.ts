@@ -19,14 +19,12 @@ export class CartComponent implements OnInit{
     private location: Location,
     private util: UtilService,
     public ms: MessageService
-  ) { }
+  ) {
+  
+   }
 
   ngOnInit() {
-
-    for(let ci of this.dataService.cartItems){
-      console.log(ci);
-    }
-    
+   this.logCartItems();
   }
 
   deleteCart(){
@@ -34,11 +32,14 @@ export class CartComponent implements OnInit{
     return this.ms.openTorlesDialog().subscribe(yes => {
       if (yes) {
         this.dataService.cartItems = [];
-        this.util.deleteData('cartVolumes');
         this.util.deleteData('cartItems'); 
       }
     });
 
+  }
+
+  logCartItems(){
+    console.log(this.dataService.cartItems);
   }
 
   deleteCartItem(ci: CartItem){
@@ -59,7 +60,8 @@ export class CartComponent implements OnInit{
   }
 
   dbChanged(ci: CartItem){
-    ci.osszar = ci.volume.saleInfo.retailPrice.amount * ci.db;
+    console.log("ci",ci);
+    ci.osszar = ci.egysegar * ci.db;
     this.util.setData('cartItems',this.dataService.cartItems);
   }
 
@@ -86,6 +88,17 @@ export class CartComponent implements OnInit{
     }
     return vegOsszeg;
 
+  }
+
+  buy(){
+    return this.ms.openSureBuyDialog().subscribe(yes => {
+      if (yes) {
+        this.ms.openInfoDialog("Sikeres vásárlás","Köszönjük a vásárlást! Sikeresen megvásárolta a kosárba helyezett könyveket.").subscribe(() => {
+          this.dataService.cartItems = [];
+          this.util.deleteData('cartItems'); 
+        });
+      }
+    });
   }
 
   

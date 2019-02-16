@@ -16,6 +16,7 @@ import { CartComponent } from './cart/cart.component';
 import { InfoDialogComponent } from './shared/dialogs/info-dialog/info-dialog.component';
 import { UtilService } from './services/util.service';
 import { SureDialogComponent } from './shared/dialogs/sure-dialog/sure-dialog.component';
+import { SureBuyDialogComponent } from './shared/dialogs/sure-buy-dialog/sure-buy-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,13 @@ import { SureDialogComponent } from './shared/dialogs/sure-dialog/sure-dialog.co
     VolumeDetailComponent,
     CartComponent,
     InfoDialogComponent,
-    SureDialogComponent
+    SureDialogComponent,
+    SureBuyDialogComponent
   ],
   entryComponents: [
     InfoDialogComponent,
-    SureDialogComponent
+    SureDialogComponent,
+    SureBuyDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
